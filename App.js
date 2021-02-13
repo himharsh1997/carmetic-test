@@ -63,22 +63,28 @@ const fbUtils = new FBUtils();
 // UI Component class
 class UIComponent {
 
-// Build Basic
+// Build Basic component ui for access token not empty
   accessTokenUI(accessToken){
      return `<p style='font-size: 14px;'>My access token: ${accessToken}</p>`
   }
+  
+  It return common error component ui
   defaultErrorUI(){
     return `<p style='font-size: 25px;'>Something went wrong while getting token</p>`
   }
 
 }
 
+// This class will render component and wholle flow of fb login to get code and then get token from code
 class App extends React.Component{
 
+// Initilise component with ui component class
 constructor(){
    this.uiComponent = new UIComponent();
 }
 
+  // On component mount we will check code in url parm
+  // fetch token from fb code
   async componentDidMount(){
     const searchStr  = window.location.search
     const urlParams = queryString.parse(searchStr);
